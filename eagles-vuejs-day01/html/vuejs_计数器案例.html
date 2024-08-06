@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../vue/vue.js"></script>
+
+<script>
+
+    window.onload = function (){
+        let vue = new Vue({
+
+            // 需要挂载的dom对象
+            el:"#box",
+
+            // 定义数据的对象
+            data:{
+                num:0
+            },
+            methods:{
+                increment(){
+                    this.num++
+                },
+                decrement(){
+                    this.num--
+                }
+            }
+        })
+    }
+
+</script>
+
+<body>
+
+<div id="box">
+    {{num}}
+    <button @click="increment">+</button>
+    <button @click="decrement">-</button>
+</div>
+
+</body>
+</html>

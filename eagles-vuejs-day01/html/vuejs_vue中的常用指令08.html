@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<script src="../vue/vue.js"></script>
+
+<body>
+
+<div id="box">
+
+    <h1>用户登录</h1>
+    <div v-if="type==='username'">
+        <label>用户名
+            <input type="text" name="username">
+        </label>
+    </div>
+
+    <div v-else-if="type==='email'">
+        <label>邮箱
+            <input type="text" name="email">
+        </label>
+    </div>
+
+    <button v-on:click="changeType">切换登录类型</button>
+
+</div>
+<script>
+    let vue = new Vue({
+        el: "#box",
+        data: {
+            type:"username"
+        },
+        methods:{
+            changeType(){
+
+                this.type = this.type === 'username' ? 'email' : 'username'
+
+            }
+        }
+    })
+</script>
+</body>
+</html>

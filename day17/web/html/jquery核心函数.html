@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<script src="../jquery/jquery-1.7.2.js"></script>
+
+<script>
+
+/*
+  window.onload = function (){
+    const btn = document.getElementById("btn")
+    btn.addEventListener("click",function (){
+      alert(btn)
+    })
+  }*/
+
+
+  // 文本就绪函数
+  $(function (){
+
+    // let btn = $("#btn")
+
+/*
+    将dom对象转换为jQuery对象
+    let btn2 = document.getElementById("#btn")
+    alert($(btn2))*/
+
+    // 获取dom对象
+/*    btn.click(function (){
+      alert(btn)
+      alert(btn[0])
+    })*/
+
+    $("[value='全选']").click(function (){
+
+      $(".hobby").each(function (){
+        this.checked = true
+      })
+
+    })
+    $("[value='全不选']").click(function (){
+
+      $(".hobby").each(function (){
+        this.checked = false
+      })
+
+    })
+    $("[value='反选']").click(function (){
+
+      $(".hobby").each(function (){
+        this.checked = !this.checked
+      })
+
+    })
+
+  })
+</script>
+
+<body>
+<center>
+  <!--  <input type="button" value="test" id="btn">-->
+  唱歌 <input type="checkbox" class="hobby" name="hobby">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  跳舞 <input type="checkbox" class="hobby" name="hobby">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  rap <input type="checkbox" class="hobby" name="hobby">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  篮球 <input type="checkbox" class="hobby" name="hobby">
+
+  <br/>
+
+  <input type="button" value="全选">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <input type="button" value="全不选">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <input type="button" value="反选">
+  <br/>
+</center>
+</body>
+</html>

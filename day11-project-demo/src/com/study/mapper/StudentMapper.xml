@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="student">
+    <insert id="addStudent" parameterType="com.study.student.pojo.Student">
+        insert into tb_student(stu_name,sex,address,birthday,hobby,cid) values(#{studentName},#{sex},#{address},#{birthday},#{hobby},#{cid})
+    </insert>
+    <delete id="deleteStudent" parameterType="Integer">
+        delete from tb_student where sid = #{sid}
+    </delete>
+    <delete id="deleteStuBySids" parameterType="Integer">
+        delete from tb_student where sid in(#{sid})
+    </delete>
+    <update id="updateStudent" parameterType="com.study.student.pojo.Student">
+        update tb_student set stu_name=#{studentName},sex=#{sex},address=#{address},birthday=#{birthday},hobby=#{hobby},cid=#{cid} where sid=#{sid}
+    </update>
+    <select id="findAllClass" resultType="com.study.student.pojo.Clazz">
+        select * from tb_class
+    </select>
+    <select id="findStuById" parameterType="Integer" resultType="com.study.student.pojo.Student">
+        select * from tb_student where sid = #{sid}
+    </select>
+    <select id="findStu" parameterType="com.study.student.pojo.Student" resultType="com.study.student.pojo.Student">
+        select * from tb_student
+        <where>
+            <if test="null != sid and '' != sid">
+                and sid = #{sid}
+            </if>
+            <if test="null != studentName and '' != studentName">
+                and stu_ame = #{studentName}
+            </if>
+            <if test="null != sex and '' != sex">
+                and sex = #{sex}
+            </if>
+            <if test="null != address and '' != address">
+                and address = #{address}
+            </if>
+            <if test="null != birthday and '' != birthday">
+                and birthday = #{birthday}
+            </if>
+            <if test="null != hobby and '' != hobby">
+                and hobby = #{hobby}
+            </if>
+            <if test="null != cid and '' != cid">
+                and cid = #{cid}
+            </if>
+        </where>
+    </select>
+
+<!--    <select id="findStudentByName" parameterType="String" resultMap="stuResultsMap">
+        select ts.*,tc.cname from tb_student ts inner join tb_class tc on ts.cid = tc.cid where stu_name like '%${name}%'
+    </select>
+
+    <select id="findAllStudents" resultMap="stuResultsMap">
+        select ts.*,tc.cname from tb_student ts inner join tb_class tc on ts.cid = tc.cid
+    </select>-->
+
+    <select id="findStudentByName" parameterType="String" resultMap="stuResultsMap">
+        select ts.*,tc.cname from tb_student ts inner join tb_class tc on ts.cid = tc.cid
+        <if test="null != name and '' != name">
+            where stu_name like '%${name}%'
+        </if>
+    </select>
+
+    <!--两表联查-->
+    <resultMap id="stuResultsMap" type="com.study.student.pojo.Student">
+        <id column="sid" property="sid"/>
+        <result column="stu_name" property="studentName"/>
+        <result column="sex" property="sex"/>
+        <result column="address" property="address"/>
+        <result column="birthday" property="birthday"/>
+        <result column="hobby" property="hobby"/>
+        <result column="cid" property="cid"/>
+        <association property="clazz" javaType="com.study.student.pojo.Clazz">
+            <id column="cid" property="cid"/>
+            <result column="cname" property="className"/>
+        </association>
+    </resultMap>
+
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--开发文档2.1.5节中可复制-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.eagles.mapper.RoleMapper">
+
+    <resultMap id="roleVo" type="role">
+        <id property="rid" column="rid"/>
+        <result property="roleName" column="role_name"/>
+        <!--配置一对多或多对多的时候使用collection-->
+        <collection property="users" ofType="user">
+            <id column="id" property="id"/>
+            <id column="name" property="name"/>
+            <id column="password" property="password"/>
+            <id column="age" property="age"/>
+            <id column="address" property="address"/>
+        </collection>
+
+    </resultMap>
+
+    <select id="getRoleList" resultMap="roleVo">
+        SELECT tu.*, tr.*
+        from ts_role tr
+        LEFT JOIN role_user ru
+        on ru.rid = tr.rid
+        left JOIN ts_user tu
+        on tu.id = ru.uid
+    </select>
+
+</mapper>

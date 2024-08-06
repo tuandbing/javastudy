@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="../jquery/jquery-1.7.2.js"></script>
+  <script>
+    $(function (){
+      $("[value='test']").click(function (){
+        $.ajax({
+          // 提交到后端的地址
+          url : "http://localhost:8080/web/test",
+
+          // 提交的方式
+          type : "post",
+
+          // 提交到后端的数据
+          data : {name : "Tom"},
+
+          // 请求成功之后的回调函数
+          success : function (obj){
+            $("#text").val(obj)
+          },
+
+          // 预期服务器推送的数据类型
+          dataType : "text"
+
+        })
+      })
+    })
+  </script>
+</head>
+<body>
+<input type="button" value="test">
+<label for="text"></label><input type="text" id="text">
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../vue/vue.js"></script>
+
+<script>
+
+    window.onload = function (){
+        let vue = new Vue({
+
+            // 需要挂载的dom对象
+            el:"#box",
+
+            // 定义数据的对象
+            data:{
+                hobbies:['打篮球','看电影','约会','敲代码'],
+                student:{
+                    name:"Jack",
+                    age:20,
+                    address:"江西省"
+                }
+            }
+        })
+    }
+
+</script>
+
+<body>
+
+<div id="box">
+    <!--<ul>
+        <li v-for="hobby in hobbies">
+            {{hobby}}
+        </li>
+    </ul>-->
+    <table>
+        <tr v-for="(hobby,index) in hobbies">
+            <td>
+                {{index+1}} : {{hobby}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{student.name}}
+                {{student.age}}
+                {{student.address}}
+            </td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

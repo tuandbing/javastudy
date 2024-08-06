@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--读取外部配置文件-->
+    <properties resource="db.properties"/>
+    <settings>
+        <!--全局开启延迟加载-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+
+        <!--全局开启已配置的二级缓存-->
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+
+    <typeAliases>
+        <package name="com.eagles.pojo"/>
+    </typeAliases>
+
+    <environments default="mysql">
+        <environment id="mysql">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${db.driver}"/>
+                <property name="url" value="${db.url}"/>
+                <property name="username" value="${db.username}"/>
+                <property name="password" value="${db.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="com/eagles/mapper/AccountMapper.xml"/>
+        <mapper resource="com/eagles/mapper/UserMapper.xml"/>
+        <mapper resource="com/eagles/mapper/RoleMapper.xml"/>
+    </mappers>
+</configuration>

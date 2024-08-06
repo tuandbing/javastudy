@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../vue/vue.js"></script>
+
+
+<body>
+
+<div id="box">
+    <!--
+        vue中的指令只能在vue挂在的元素中使用
+        v-once: 值不会被动态修改,只会显示第一次被赋的值
+        v-html: 解析html展示
+        v-text: 与Mustache类似,用于将数据显示在界面中,一般接收一个string类型
+    -->
+    <h1>{{message}}</h1>
+    <h1 v-once>{{message}}</h1>
+    <h1>{{link}}</h1>
+    <h1 v-html="link"></h1>
+
+</div>
+
+<script>
+    let vue = new Vue({
+        el:"#box",
+        data:{
+            message:"hello vue",
+            link:"<a href='https://www.baidu.com'>百度一下</a>"
+        }
+    })
+</script>
+</body>
+</html>

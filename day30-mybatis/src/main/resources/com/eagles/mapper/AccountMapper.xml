@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--开发文档2.1.5节中可复制-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.eagles.mapper.AccountMapper">
+
+    <!--开启当前mapper的缓存-->
+    <cache/>
+
+    <resultMap id="accountVo" type="account">
+        <id property="aid" column="aid"/>
+        <result property="money" column="money"/>
+        <result property="desc" column="desc"/>
+        <result property="uid" column="uid"/>
+        <association property="user" javaType="user">
+            <id column="id" property="id"/>
+            <id column="name" property="name"/>
+            <id column="password" property="password"/>
+            <id column="age" property="age"/>
+            <id column="address" property="address"/>
+        </association>
+    </resultMap>
+
+    <select id="findAccounts" resultMap="accountVo" useCache="true">
+        select * from ts_account ta join ts_user tu on ta.uid = tu.id
+    </select>
+
+    <select id="findAccountByUid" parameterType="int" resultMap="accountVo">
+        select * from ts_account where uid = #{uid}
+    </select>
+
+</mapper>

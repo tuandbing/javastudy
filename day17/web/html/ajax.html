@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="../jquery/jquery-1.7.2.js"></script>
+  <script>
+            function ajax(){
+
+                let xmlHttpRequest = new XMLHttpRequest()
+
+                xmlHttpRequest.onreadystatechange = function (){
+                    if(xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200){
+
+                        // 后端推送的文本数据
+                        let data = xmlHttpRequest.responseText
+
+                        document.getElementById("text").value = data
+
+                    }
+                }
+
+                xmlHttpRequest.open("post","http://localhost:8080/web/test",true)
+
+                xmlHttpRequest.send()
+
+            }
+  </script>
+</head>
+<body>
+
+<input type="button" value="test" onclick="ajax()">
+<input type="text" id="text">
+</body>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--xml是文本标记性语言，拥有自我描述性，可以自定义标签和属性-->
+<students>
+
+    <studnet id="1001">
+        <name>jack</name>
+        <age>20</age>
+        <address>南京市</address>
+    </studnet>
+
+    <studnet id="1002">
+        <name>tom</name>
+        <age>22</age>
+        <address>镇江市</address>
+    </studnet>
+
+    <studnet id="1003">
+        <name>张三</name>
+        <age>23</age>
+        <address>北京市</address>
+    </studnet>
+
+    <studnet id="1004">
+        <name>李四</name>
+        <age>25</age>
+        <address>天津市</address>
+    </studnet>
+
+</students>

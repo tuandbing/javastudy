@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../vue/vue.js"></script>
+
+<script>
+
+    window.onload = function (){
+        let vue = new Vue({
+
+            // 需要挂载的dom对象
+            el:"#box",
+
+            // 定义数据的对象
+            data:{
+                name:'Jack',
+                age:'18'
+            }
+        })
+    }
+
+</script>
+
+<body>
+
+<div id="box">
+    {{name}}
+    {{age}}
+</div>
+
+</body>
+</html>

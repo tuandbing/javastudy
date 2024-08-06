@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<script src="../vue/vue.js"></script>
+
+<body>
+
+<div id="box">
+
+    <h1 v-if="score>90">优秀</h1>
+    <h1 v-else-if="score>80">良好</h1>
+    <h1 v-else-if="score>70">中等</h1>
+    <h1 v-else-if="score>60">及格</h1>
+    <h1 v-else>不及格</h1>
+
+</div>
+<script>
+    let vue = new Vue({
+        el: "#box",
+        data: {
+            score: 98
+        }
+    })
+</script>
+</body>
+</html>

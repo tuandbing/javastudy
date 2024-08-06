@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--开发文档2.1.5节中可复制-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.eagles.mapper.UserMapper">
+
+    <resultMap id="userVo" type="user">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="password" column="password"/>
+        <result property="age" column="age"/>
+        <result property="address" column="address"/>
+
+        <collection property="accounts" ofType="account" select="com.eagles.mapper.AccountMapper.findAccountByUid" column="id">
+            <id column="aid" property="aid"/>
+            <id column="money" property="money"/>
+            <id column="desc" property="desc"/>
+            <id column="uid" property="uid"/>
+
+        </collection>
+
+    </resultMap>
+
+    <!--
+        SELECT * from ts_user tu
+        left join ts_account ta
+        on tu.id = ta.uid
+    -->
+    <select id="getUserList" resultMap="userVo">
+        select * from ts_user
+    </select>
+
+</mapper>

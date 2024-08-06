@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="user" class="com.study.demo.pojo.User" init-method="init" destroy-method="destroy"/>
+
+    <bean id="student" class="com.study.demo.pojo.Student" scope="prototype">
+        <property name="name" value="馒头"/>
+        <property name="date" ref="date"/>
+        <property name="list">
+            <list>
+                <value>123</value>
+                <value>456</value>
+                <value>789</value>
+            </list>
+        </property>
+        <property name="age" value="18"/>
+        <property name="map">
+            <map>
+                <entry key="key1" value="value1"/>
+                <entry key="key2" value="value2"/>
+                <entry key="key3" value="value3"/>
+                <entry key="key4" value="value4"/>
+            </map>
+        </property>
+        <property name="strings">
+            <array>
+                <value>sb</value>
+                <value>佩奇</value>
+                <value>又细</value>
+                <value>又短</value>
+            </array>
+        </property>
+    </bean>
+    <bean id="date" class="java.util.Date"/>
+
+    <bean id="accountServlet" class="com.study.demo.servlet.AccountServlet">
+        <property name="accountServlet" ref="accountService"/>
+    </bean>
+    <bean id="accountService" class="com.study.demo.service.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao"/>
+    </bean>
+    <bean id="accountDao" class="com.study.demo.dao.AccountDaoImpl"/>
+    <bean id="servlet" class="com.study.account.servlet.AccountServlet">
+        <constructor-arg name="accountService" ref="service"/>
+    </bean>
+    <bean id="service" class="com.study.account.service.AccountServiceImpl">
+        <constructor-arg name="accountDao" ref="dao"/>
+    </bean>
+    <bean id="dao" class="com.study.account.dao.AccountDaoImpl"/>
+</beans>

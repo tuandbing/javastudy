@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--开发文档2.1.5节中可复制-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.eagles.day32project.mapper.BusinessMapper">
+
+    <resultMap id="businessVo" type="business">
+
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="phone" property="phone"/>
+        <result column="address" property="address"/>
+        <collection property="productList" ofType="product">
+            <id column="id" property="id"/>
+            <result column="product_name" property="productName"/>
+            <result column="feature" property="feature"/>
+            <result column="weight" property="weight"/>
+            <result column="price" property="price"/>
+            <result column="date" property="date"/>
+            <result column="power" property="power"/>
+        </collection>
+
+    </resultMap>
+
+    <!--获取所有商家信息-->
+    <select id="getBusinessList" resultMap="businessVo" parameterType="map">
+        select * from tb_business tb left join tb_product tp on tp.bid = tb.id
+    </select>
+
+    <!--对商家进行更新-->
+    <update id="updateBusiness" parameterType="business">
+        update tb_business set username = #{username},
+        password = #{password},phone = #{phone},address = #{address}
+        where id = #{id}
+    </update>
+
+    <!--添加商家-->
+    <insert id="insertBusiness" parameterType="business">
+        insert into tb_business(username, password, phone, address)
+        VALUES(#{username},#{password},#{phone},#{address})
+    </insert>
+
+    <!--删除商家-->
+    <delete id="deleteBusiness" parameterType="int">
+        delete from tb_business where id = #{id}
+    </delete>
+
+    <!--商家登录校验-->
+    <select id="login" parameterType="business" resultType="business">
+        select * from tb_business where username = #{username} and password = #{password}
+    </select>
+
+    <!--通过id查找商家-->
+    <select id="getBusinessById" parameterType="int" resultMap="businessVo">
+        select * from tb_business tb left join tb_product tp on tp.bid = tb.id where tb.id = #{id}
+    </select>
+
+    <!--通过名称查找商家-->
+    <select id="getBusinessByName" parameterType="string" resultMap="businessVo">
+        select * from tb_business tb left join tb_product tp on tp.bid = tb.id where tb.username = #{username}
+    </select>
+
+</mapper>

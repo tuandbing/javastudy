@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<style>
+    table{
+        text-align: center;
+        width: 600px;
+        height: 300px;
+        position: relative;
+        left: 30%;
+    }
+    #total{
+        position: relative;
+        left: 30%;
+    }
+</style>
+</head>
+<script src="../vue/vue.js"></script>
+
+<body>
+
+<div id="box">
+
+<table border="1px">
+    <tr>
+        <td></td><td>书籍名称</td><td>出版日期</td><td>价格</td><td>购买数量</td><td>操作</td>
+    </tr>
+    <tr v-for="(book,index) in books">
+        <td>{{index}}</td>
+        <td>{{book.name}}</td>
+        <td>{{book.date}}</td>
+        <td>￥{{book.price}}</td>
+        <td>
+            <button v-on:click="book.count--">-</button>
+            {{book.count}}
+            <button v-on:click="book.count++">+</button>
+        </td>
+        <td>
+            <button v-on:click="removeBook(index)">移除</button>
+        </td>
+    </tr>
+</table>
+<div id="total">
+    总价 : ￥{{getCountPrice}}
+</div>
+</div>
+<script>
+    let vue = new Vue({
+        el: "#box",
+        data: {
+            type:"username",
+            books:[
+                {name:"算法导论",date:"2006-9",price:85.00,count:1},
+                {name:"UNIX编程艺术",date:"2006-2",price:59.00,count:1},
+                {name:"编程珠玑",date:"2008-10",price:39.00,count:1},
+                {name:"代码大全",date:"2006-3",price:128.00,count:1},
+            ]
+        },
+        methods:{
+            removeBook(index){
+                this.books.splice(index,1)
+            }
+        },
+        computed:{
+            getCountPrice(){
+                let totalPrice = 0
+                /*                for (let book of this.books) {
+
+                                    totalPrice += book.price * book.count
+
+                                }*/
+
+                this.books.forEach((book)=>totalPrice+=book.price)
+                return totalPrice
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<script src="../vue/vue.js"></script>
+
+<body>
+
+
+<!--
+    v-if 和 v-show的区别在于:
+        当判断条件为false的时候,v-if直接没有该元素，而v-show是将该元素的display属性设置为none
+
+-->
+<div id="box">
+
+    <div v-show="isShow">显示元素</div>
+
+</div>
+<script>
+    let vue = new Vue({
+        el: "#box",
+        data: {
+            type:"username",
+            isShow:false
+        }
+    })
+</script>
+</body>
+</html>

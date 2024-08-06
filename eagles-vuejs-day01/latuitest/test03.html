@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo</title>
+  <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
+  <link href="../layui/css/layui.css" rel="stylesheet">
+</head>
+<body>
+<div class="layui-anim" id="example-anim-element" style="padding: 16px 0;">
+  目标元素
+</div>
+<button class="layui-btn layui-btn-primary" id="example-anim-usage">点击触发动画</button>
+<p>旋转动画加自动循环：</p>
+<button class="layui-btn">
+  <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>
+</button>
+
+<button class="layui-btn">
+  <i class="layui-icon layui-anim layui-anim-fadeout layui-anim-loop">渐隐</i>
+</button>
+
+<button class="layui-btn">
+  <i class="layui-icon layui-anim layui-anim-fadein layui-anim-loop">渐现</i>
+</button>
+
+<button class="layui-btn">
+  <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop">旋转</i>
+</button>
+
+<!-- 请勿在项目正式环境中引用该 layui.js 地址 -->
+<script src="../layui/layui.js"></script>
+
+<script>
+  layui.use(function(){
+    var $ = layui.$;
+    var elem = $('#example-anim-element');
+    var animName = 'layui-anim-down'; // 动画类名
+
+    // 通过事件简单演示动画过程
+    $('#example-anim-usage').on('click', function(){
+      elem.removeClass(animName);
+      setTimeout(function(){
+        elem.addClass(animName); // 给目标元素追加「往下滑入」的动画
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

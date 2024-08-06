@@ -1,0 +1,24 @@
+server:
+  port: 8080
+spring:
+  data:
+    redis:
+      port: 6379
+  application:
+    name: businessServer
+  datasource:
+    url: jdbc:mysql://localhost:3306/vegetable?serverTimezone=GMT&characterEncoding=utf-8
+    username: root
+    password: pyw040212
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  freemarker:
+    template-loader-path: classpath:/templates/
+    suffix: .ftl
+    settings:
+      classic_compatible: true
+mybatis:
+  type-aliases-package: com.eagles.day32project.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath*:mappers/*.xml
+

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<script src="../vue/vue.js"></script>
+
+
+<body>
+
+<div id="box">
+
+    <h1 v-cloak>{{message}}</h1>
+
+
+</div>
+
+<script>
+
+    setTimeout(()=>{
+        let vue = new Vue({
+            el:"#box",
+            data:{
+                message:"hello vue",
+            }
+        })
+    },10000)
+
+
+</script>
+</body>
+</html>

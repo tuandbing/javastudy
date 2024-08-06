@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<script src="../vue/vue.js"></script>
+
+<body>
+
+<div id="box">
+
+    <h1>{{number}}</h1>
+    <button v-on:click="number++">点击增加</button>
+    <button v-on:click="al">点击弹窗</button>
+
+</div>
+<script>
+    let vue = new Vue({
+        el: "#box",
+        data: {
+            number: 1
+        },
+        methods: {
+            al(){
+                alert(this.number)
+            }
+        }
+    })
+</script>
+</body>
+</html>

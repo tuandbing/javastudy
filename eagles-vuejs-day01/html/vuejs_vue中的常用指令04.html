@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #test01{
+            color: red;
+        }
+    </style>
+</head>
+<script src="../vue/vue.js"></script>
+
+
+<body>
+
+<div id="box">
+
+    <h1 :id="isShow">hello world</h1>
+
+
+</div>
+
+<script>
+        let vue = new Vue({
+            el:"#box",
+            data:{
+                link:"https://www.baidu.com",
+                isShow:"test01"
+            }
+        })
+
+
+</script>
+</body>
+</html>
